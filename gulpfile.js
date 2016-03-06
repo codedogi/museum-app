@@ -96,33 +96,39 @@ gulp.task('clean', function() {
 gulp.task('deploy-js', ['js'], function() {
     return gulp.src('dist/js/**/' + fileDiscriminator)
         .pipe(gulp.dest('app/js'))
-        .pipe(notify({ message: 'Deploy develop js complete' }));
+        .pipe(notify({ message: 'Deploy js complete' }));
 });
 
 gulp.task('deploy-css', ['styles'], function() {
     return gulp.src('dist/styles/**/' + fileDiscriminator)
         .pipe(gulp.dest('app/css'))
-        .pipe(notify({ message: 'Deploy develop css task complete' }));
+        .pipe(notify({ message: 'Deploy css task complete' }));
 });
 
 gulp.task('deploy-third-party', function() {
     return gulp.src('dist/third-party/**/' + fileDiscriminator)
         .pipe(gulp.dest('app/third-party'))
-        .pipe(notify({ message: 'Deploy develop third-party task complete' }));
+        .pipe(notify({ message: 'Deploy third-party task complete' }));
+});
+
+gulp.task('deploy-third-party-fonts', function() {
+    return gulp.src('dist/third-party/font-awesome/fonts/*')
+        .pipe(gulp.dest('app/third-party/font-awesome/fonts'))
+        .pipe(notify({ message: 'Deploy third-party fonts task complete' }));
 });
 
 // deploy develop
 gulp.task('deploy-debug', function(cb) {
 
     fileDiscriminator = '!(*.min.*)';
-    runsequence(['deploy-js', 'deploy-css', 'deploy-third-party'], cb)
+    runsequence(['deploy-js', 'deploy-css', 'deploy-third-party', 'deploy-third-party-fonts'], cb)
 });
 
 // deploy release
 gulp.task('deploy-release', function(cb) {
 
     fileDiscriminator = '+(*.min.*)';
-    runsequence(['deploy-js', 'deploy-css', 'deploy-third-party'], cb)
+    runsequence(['deploy-js', 'deploy-css', 'deploy-third-party', 'deploy-third-party-fonts'], cb)
 });
 
 // Static Server + watching files
