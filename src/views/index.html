@@ -20,23 +20,28 @@
             <li class="sidebar-brand">
                 <span>Museum</span>
             </li>
+            {% for menu in menus %}
             <li>
-                <button type="button" id="c1" class="btn btn-lg btn-block clip">Play Clip 1</button>
+                <button type="button" clip="{{ video }}" class="btn btn-lg btn-block clip">{{ name }}</button>
+            </li>
+            {% endfor %}
+            <li>
+                <button type="button" id="c1" class="btn btn-lg btn-block clip">Play Clip .1</button>
             </li>
             <li>
-                <button type="button" id="c2" class="btn btn-lg btn-block clip">Play Clip 2</button>
+                <button type="button" id="c2" class="btn btn-lg btn-block clip">Play Clip .2</button>
             </li>
             <li>
-                <button type="button" id="c3" class="btn btn-lg btn-block clip">Play Clip 3</button>
+                <button type="button" id="c3" class="btn btn-lg btn-block clip">Play Clip .3</button>
             </li>
             <li>
-                <button type="button" id="c4" class="btn btn-lg btn-block clip">Play Clip 4</button>
+                <button type="button" id="c4" class="btn btn-lg btn-block clip">Play Clip .4</button>
             </li>
             <li>
-                <button type="button" id="c5" class="btn btn-lg btn-block clip">Play Clip 5</button>
+                <button type="button" id="c5" class="btn btn-lg btn-block clip">Play Clip .5</button>
             </li>
             <li>
-                <button type="button" id="c6" class="btn btn-lg btn-block clip">Play Clip 6</button>
+                <button type="button" id="c6" class="btn btn-lg btn-block clip">Play Clip .6</button>
             </li>
         </ul>
     </div>
@@ -47,7 +52,7 @@
         <div class="container-fluid">
             <div class="row">
                 <video loop autoplay controls>
-                    <source src="video/project.mp4" type="video/mp4">
+                    <source src="../video/project.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
