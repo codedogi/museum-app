@@ -62,7 +62,7 @@ gulp.task('app', function() {
 // Video
 gulp.task('video', function() {
     return gulp.src('src/app/video/**/*')
-        .pipe(gulp.dest('public/app/video'));
+        .pipe(gulp.dest('www/museum-app/app/video'));
         //.pipe(notify({ message: 'Video task complete' }));
 });
 
@@ -110,7 +110,7 @@ gulp.task('bust', function (done) {
 // deploy startup code
 gulp.task('deploy-start', ['server'], function() {
     var stream = gulp.src('src/index.js')
-        .pipe(gulp.dest('public/'));
+        .pipe(gulp.dest('www/museum-app/'));
     //.pipe(notify({ message: 'Deploy start script complete' }));
 
     return stream;
@@ -126,7 +126,7 @@ gulp.task('deploy-server', ['server'], function() {
 
     var stream = gulp.src('dist/server/**/' + fileDiscriminator)
         .pipe(insert.append(env))
-        .pipe(gulp.dest('public/server'));
+        .pipe(gulp.dest('www/museum-app/server'));
     //.pipe(notify({ message: 'Deploy server complete' }));
 
     return stream;
@@ -134,31 +134,31 @@ gulp.task('deploy-server', ['server'], function() {
 
 gulp.task('deploy-views', function() {
     return gulp.src('dist/app/views/**/!(index.*)')
-        .pipe(gulp.dest('public/app/views'));
+        .pipe(gulp.dest('www/museum-app/app/views'));
     //.pipe(notify({ message: 'Deploy views complete' }));
 })
 
 gulp.task('deploy-app', function() {
     return gulp.src('dist/app/**/' + fileDiscriminator)
-        .pipe(gulp.dest('public/app'));
+        .pipe(gulp.dest('www/museum-app/app'));
         //.pipe(notify({ message: 'Deploy app complete' }));
 });
 
 gulp.task('deploy-css', function() {
     return gulp.src('dist/app/css/**/' + fileDiscriminator)
-        .pipe(gulp.dest('public/app/css'));
+        .pipe(gulp.dest('www/museum-app/app/css'));
         //.pipe(notify({ message: 'Deploy css task complete' }));
 });
 
 gulp.task('deploy-third-party', function() {
     return gulp.src('dist/app/third-party/**/' + fileDiscriminator)
-        .pipe(gulp.dest('public/app/third-party'));
+        .pipe(gulp.dest('www/museum-app/app/third-party'));
         //.pipe(notify({ message: 'Deploy third-party task complete' }));
 });
 
 gulp.task('deploy-third-party-fonts', function() {
     return gulp.src('dist/app/third-party/font-awesome/fonts/*')
-        .pipe(gulp.dest('public/app/third-party/font-awesome/fonts'));
+        .pipe(gulp.dest('www/museum-app/app/third-party/font-awesome/fonts'));
         //.pipe(notify({ message: 'Deploy third-party fonts task complete' }));
 });
 
@@ -202,7 +202,7 @@ gulp.task('serve', function() {
 
 // Clean
 gulp.task('clean', function() {
-    return gulp.src(['dist/*', 'public/*'])
+    return gulp.src(['dist/*', 'www/*'])
         .pipe(clean());
 });
 
@@ -213,16 +213,16 @@ gulp.task('common', ['styles', 'app', 'video', 'jquery', 'bootstrap', 'font-awes
 gulp.task('inject', function() {
 
     var sources = gulp.src([
-            './public/app/third-party/**/'.concat(fileDiscriminator)
-            , './public/app/css/**/simple'.concat(fileDiscriminator)
-            , './public/app/css/**/app'.concat(fileDiscriminator)
-            , './public/app/app/index/**/*.js'.concat(fileDiscriminator)
-            , './public/app/app.js'.concat(fileDiscriminator)
+            './www/museum-app/app/third-party/**/'.concat(fileDiscriminator)
+            , './www/museum-app/app/css/**/simple'.concat(fileDiscriminator)
+            , './www/museum-app/app/css/**/app'.concat(fileDiscriminator)
+            , './www/museum-app/app/app/index/**/*.js'.concat(fileDiscriminator)
+            , './www/museum-app/app/app.js'.concat(fileDiscriminator)
         ], {read: false});
 
     return gulp.src('./dist/app/views/index.html')
-        .pipe(inject(sources, { ignorePath: 'public/app/', addRootSlash: false })) //, addPrefix: './..' }))
-        .pipe(gulp.dest('./public/app/views'));
+        .pipe(inject(sources, { ignorePath: 'www/museum-app/app/', addRootSlash: false })) //, addPrefix: './..' }))
+        .pipe(gulp.dest('./www/museum-app/app/views'));
 });
 
 // Default task
