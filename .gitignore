@@ -1,6 +1,6 @@
 # app
-app
 dist
+public
 *.mp4
 
 # Logs

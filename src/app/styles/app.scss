@@ -1,3 +1,4 @@
+
 /* App Styles */
 body {
   background-color: #000;
@@ -22,14 +23,19 @@ video {
   padding-top: 21px;
   top: 10px;
   position: absolute;
+  z-index: -1;
 }
 
 .menu {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
 #wrapper .menu {
   left: 157px;
+  z-index: 1;
 }
 
 #wrapper.toggled .menu {
@@ -37,6 +43,7 @@ video {
 }
 
 /* Sidebar Styles */
+
 .sidebar-nav {
   padding: 0px 20px;
 }
@@ -56,11 +63,12 @@ video {
   margin: 10px 0px;
 }
 
-@media (min-width: 768px) {
+@media(min-width:768px) {
   #page-content-wrapper {
     padding: 0px;
   }
 }
+
 /* Grid.less Styles */
 .container-fluid {
   padding-left: 0px;

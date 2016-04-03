@@ -12,8 +12,9 @@ var App = {
 
 console.log(App);
 
-var ctrl = require('../controllers/index.server.controller')
-var model = ctrl.model;
+var indexCtrl = require('./index/controllers/index.server.controller.js');
+var attractSequence = indexCtrl.getAttractSequence();
+var clips = indexCtrl.getMenus();
 
 /* Setup Menus */
 var menu = $(".menu");
@@ -31,22 +32,17 @@ var leftMenuToggle = function () {
 
 menu.click(leftMenuToggle);
 
-/* Video Sequence */
+/* Video Attract Sequence */
 var playAttractSequence = function () {
-    if (wrapper.hasClass("toggled")) {
-        leftMenuToggle();
-    }
-
-    playSequence(model.attractSequence.video);
+    playSequence(attractSequence.video);
 };
 
 var playSequence = function (clip) {
-
-    leftMenuToggle();
+    wrapper.addClass('toggled');
     videoAttributeToggle();
 
     // load and play clip
-    videoInstance.src = '../videos/' + clip;
+    videoInstance.src = '../video/' + clip;
     videoInstance.load();
     videoInstance.play();
 };
@@ -64,11 +60,14 @@ var videoAttributeToggle = function () {
 };
 
 /*Button Click Script*/
-buttons.click(function (e) {
-    var button = e.target;
-    var clip = button.attr('clip')
-    playSequence(clip);
+buttons.click(function () {
+    var index = buttons.index(this);
+    playSequence(clips[index].video);
 });
 
 /*Video Script*/
 videoInstance.onended = playAttractSequence;
+
+//leftMenuToggle();
+videoAttributeToggle();
+playAttractSequence();
